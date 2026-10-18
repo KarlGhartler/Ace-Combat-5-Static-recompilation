@@ -635,6 +635,7 @@ int main(int argc, char **argv) {
     rn_dump_init();
     rn_vp_init();
     rn_intent_init();
+    ps2_horplus_init();
     rn_fixes_init();
     if (want_selftest) {
         int bad;

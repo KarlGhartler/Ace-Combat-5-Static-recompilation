@@ -63,6 +63,7 @@ set(RUNTIME_SOURCES
     runtime/src/ps2_capture.c
     runtime/src/ps2_statecap.c
     runtime/src/ps2_settings.c
+    runtime/src/ps2_horplus.c
     runtime/src/ps2_mod.c
     runtime/src/ps2_hook.c
     runtime/src/ps2_modapi.c
@@ -157,6 +158,7 @@ list(REMOVE_ITEM REPLAY_SOURCES runtime/src/ps2_main.c
 list(APPEND REPLAY_SOURCES runtime/src/ps2_replay.c)
 
 add_executable(gsreplay ${REPLAY_SOURCES})
+target_compile_definitions(gsreplay PRIVATE PS2_HORPLUS_NO_HOOKS=1)
 target_include_directories(gsreplay PRIVATE runtime/include "${GEN_DIR}"
                                             "${LUA_DIR}"
                                             ${IMGUI_DIR} ${IMGUI_DIR}/backends

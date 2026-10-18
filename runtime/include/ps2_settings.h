@@ -56,6 +56,8 @@ typedef struct ps2_settings {
     int   integer_scale;
     int   widescreen;
     int   hud_layout;
+    int   horplus;
+    int   horplus_key;
     int   present_mode;
     int   fps_limit;
     int   show_fps;
@@ -91,6 +93,12 @@ const char *ps2_key_name(int scancode);
 const char *ps2_padbind_name(int code);
 
 void ps2_settings_apply_game_patches(void);
+
+/* Hor+ ultrawide (ps2_horplus.c) */
+extern float ps2_horplus_k;
+void ps2_horplus_init(void);
+void ps2_horplus_toggle(const char *why);
+void ps2_horplus_report(void);
 
 float ps2_pad_axis_value(int raw, int positive);
 void  ps2_pad_stick(float deadzone, float axis_scale, int invert, const float v[4],

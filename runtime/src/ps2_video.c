@@ -4481,6 +4481,9 @@ static void pump_events(void) {
             break;
         case SDL_EVENT_KEY_DOWN:
             if (e.key.key == SDLK_ESCAPE && !window_hidden) window_closed = 1;
+            if (ps2_cfg.horplus_key && (int)e.key.scancode == ps2_cfg.horplus_key
+                && !e.key.repeat)
+                ps2_horplus_toggle(SDL_GetScancodeName(e.key.scancode));
             if (e.key.key == SDLK_F9) {
                 ps2_capture_request = 1;
                 ps2_log("capture: requested; the next field will be captured");

@@ -66,7 +66,7 @@ static void hand_over(const held_prim *h, int native) {
 static void reanchor(void) {
     float x0 = 1e9f, x1 = -1e9f, cx, gx, s;
     u32 fbw = 0;
-    if (!ps2_cfg.widescreen || ps2_cfg.hud_layout != PS2_HUD_CENTERED) return;
+    if ((!ps2_cfg.widescreen && !ps2_cfg.horplus) || ps2_cfg.hud_layout != PS2_HUD_CENTERED) return;
     if (el.flags & RN_G_WORLD) return;
     if (!(ps2_vk_display_aspect > 1.34f)) return;
     for (u32 i = 0; i < el.n; i++) {

@@ -389,7 +389,17 @@ void widescreen_control() {
     help("Applies the 16:9 patch from PCSX2's patch database (by nemesis2000) to the game's "
          "own camera, so the 3D view really is wider instead of stretched. Use Auto or 16:9 "
          "aspect with it.");
-    if (ws) {
+    bool hp = ps2_cfg.horplus != 0;
+    if (ImGui::Checkbox("Hor+ ultrawide (keep vertical FOV)", &hp)) {
+        ps2_cfg.horplus = hp;
+        changed(0);
+    }
+    help("Widens the 3D view to the shape of the picture -- any window wider than the game's "
+         "own -- while keeping the vertical field of view, so nothing is stretched. Leave the "
+         "game's own display option at 4:3; the cockpit stays where it is. Use 'Stretch to "
+         "fill the window'. The toggle key (horplus_key in ac5_settings.ini, F5 by default) "
+         "switches it while playing.");
+    if (ws || hp) {
         static const char *const HUD_LAYOUTS[] = { "Stretched with the picture",
                                                    "4:3 in the centre" };
         if (ImGui::Combo("HUD layout", &ps2_cfg.hud_layout, HUD_LAYOUTS, 2)) changed(0);

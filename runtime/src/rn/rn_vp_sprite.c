@@ -1,4 +1,5 @@
 #include "rn_vp_int.h"
+#include "ps2_settings.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -86,11 +87,13 @@ static int tree(vpx *x, u32 rec, u16 t, int mode1, u32 o) {
     vp_lq(x, 1, (u32)(t + 0x24u), VP_MALL);
     v1[0] = v1[0] * F(4)[2]; v1[1] = v1[1] * F(4)[2];
     v1[0] = v1[0] * q;       v1[1] = v1[1] * q;
+    v1[0] *= ps2_horplus_k;      /* Hor+: the sprite's x offset narrows like the view */
     v13[0] = v13[0] + v1[0]; v13[1] = v13[1] + v1[1];
     vp_lq(x, 2, (u32)(t + 0x2Au), VP_MALL);
     v1[0] = 0.0f + v2[0];    v1[1] = 0.0f + v2[1];
     v1[0] = v1[0] * F(4)[2]; v1[1] = v1[1] * F(4)[2];
     v1[0] = v1[0] * q;       v1[1] = v1[1] * q;
+    v1[0] *= ps2_horplus_k;      /* Hor+: and so does its half-width */
     v2[0] = v1[0] * v1[0];   v2[1] = v1[1] * v1[1];
     v3[0] = v13[0] - 2048.0f; v3[1] = v13[1] - 2048.0f;
     v2[0] = v2[0] + v2[1];

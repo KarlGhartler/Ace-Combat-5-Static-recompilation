@@ -1,4 +1,5 @@
 #include "rn_vp_int.h"
+#include "ps2_settings.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -407,6 +408,7 @@ void rn_vp_report(void) {
     rn_vp_terrain_report();
     rn_vp_shadow_report();
     rn_vp_sprite_report();
+    ps2_horplus_report();
     rn_vp_load_report();
     rn_vp_lit_report();
     rn_vp_fx_report();
